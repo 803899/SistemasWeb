@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet type="text/xsl" href="VerPreguntas.xsl" ?>
+<assessmentItems>
+	<assessmentItem complexity="2" subject="Web" author="jvadillo001@ikasle.ehu.es">
+		<itemBody>
+			<p>Tag HTML para a&#xF1;adir un formulario</p>
+		</itemBody>
+		<correctResponse>
+			<value>
+				FORM
+			</value>
+		</correctResponse>
+		<incorrectResponses>
+			<value> OBJECT </value>
+			<value> TABLE </value>
+			<value> DIV </value>
+		</incorrectResponses>
+	</assessmentItem>
+	<assessmentItem complexity="4" subject="Internet" author="rarruabarrena001@ikasle.ehu.eus">
+		<itemBody>
+			<p>Este protocolo acabar&#xE1; funcionando
+			incluso entre dos latas unidas por un cord&#xF3;n</p>
+		</itemBody>
+		<correctResponse>
+			<value>
+				TCP/IP
+			</value>
+		</correctResponse>
+		<incorrectResponses>
+			<value> HTTP </value>
+			<value> SMTP </value>
+			<value> Ninguna es correcta </value>
+		</incorrectResponses>
+	</assessmentItem>
+	<assessmentItem complexity="3" subject="" author="jminer002@ikasle.ehu.eus">
+		<itemBody>
+			<p>asdf</p>
+		</itemBody>
+		<correctResponse>
+			<value>sadf</value>
+		</correctResponse>
+		<incorrectResponses>
+			<value>asdf</value>
+			<value>asdf</value>
+			<value>asdf</value>
+		</incorrectResponses>
+	</assessmentItem>
+<assessmentItem complexity="4" subject="d" author="jminer002@ikasle.ehu.eus"><itemBody><p>afg</p></itemBody><correctResponse><value>adsf</value></correctResponse><incorrectResponses><value>asfg</value><value>afv</value><value>adfg</value></incorrectResponses></assessmentItem><assessmentItem complexity="4" subject="d" author="jminer002@ikasle.ehu.eus"><itemBody><p>afg</p></itemBody><correctResponse><value>adsf</value></correctResponse><incorrectResponses><value>asfg</value><value>afv</value><value>adfg</value></incorrectResponses></assessmentItem></assessmentItems>
