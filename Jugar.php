@@ -48,7 +48,7 @@ if (!isset($_SESSION['user'])) {
             <p class="float-left d-md-none">
                 <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Navegación</button>
             </p>
-            <div class="jumbotron" id="pregunta">
+            <div class="jumbotron" id="pregunta" style="height: 500px;">
 
             </div>
         </div>
@@ -62,6 +62,7 @@ createFooter();
 <script src="lib/popper.min.js"></script>
 <script src="static/js/bootstrap.min.js"></script>
 <script src="static/js/offcanvas.js"></script>
+<script defer src="lib/fontawesome-all.js"></script>
 <script>
     xhrSiguiente = new XMLHttpRequest();
     xhrSiguiente.onreadystatechange = function () {
@@ -70,74 +71,81 @@ createFooter();
                 document.getElementById("pregunta").innerHTML = "<img src='images/loading.gif' width='600px'>";
                 break;
             case 4:
-                document.getElementById("pregunta").innerHTML = xhrSiguiente.responseText;
+                var res = xhrSiguiente.responseText
+                if(res == "fin"){
+                    window.location = "FinJuego.php";
+                }else {
+                    document.getElementById("pregunta").innerHTML = res;
+                }
                 break;
         }
     }
     siguiente();
+
     function siguiente() {
         xhrSiguiente.open('GET', 'ajax/Siguiente.php', true);
         xhrSiguiente.send();
     }
 
-    xhrComprobar= new XMLHttpRequest();
-    xhrComprobar.onreadystatechange = function(){
+    xhrComprobar = new XMLHttpRequest();
+    xhrComprobar.onreadystatechange = function () {
         switch (xhrComprobar.readyState) {
             case 1:
                 document.getElementById('resultado').innerHTML = "<img src='images/loading2.gif' width='20px'>";
                 break;
             case 4:
+                document.getElementById('saltar').value = "Siguiente"
                 var respuesta = JSON.parse(xhrComprobar.responseText);
-                if(respuesta[0] == "ok"){
+                if (respuesta[0] == "ok") {
                     document.getElementById('resultado').innerHTML = "Acierto";
                     document.getElementById('resultado').style.color = "green";
                     document.getElementById('puntuacion').innerHTML = respuesta[1];
                     if (document.getElementById('op1').checked) {
                         document.getElementById('t1').style.color = "green";
                         document.getElementById('t1').innerHTML = (document.getElementById('op1').value + " - CORRECTA").bold();
-                    }else if (document.getElementById('op2').checked) {
+                    } else if (document.getElementById('op2').checked) {
                         document.getElementById('t2').style.color = "green";
                         document.getElementById('t2').innerHTML = (document.getElementById('op2').value + " - CORRECTA").bold();
-                    }else if (document.getElementById('op3').checked) {
+                    } else if (document.getElementById('op3').checked) {
                         document.getElementById('t3').style.color = "green";
                         document.getElementById('t3').innerHTML = (document.getElementById('op3').value + " - CORRECTA").bold();
-                    }else if (document.getElementById('op4').checked) {
+                    } else if (document.getElementById('op4').checked) {
                         document.getElementById('t4').style.color = "green";
                         document.getElementById('t4').innerHTML = (document.getElementById('op4').value + " - CORRECTA").bold();
                     }
                     console.log("Respuesta correcta");
-                }else if(respuesta[0] == "no"){
+                } else if (respuesta[0] == "no") {
                     document.getElementById('resultado').innerHTML = "Ya has comprobado";
                     document.getElementById('resultado').style.color = "black";
                     console.log("No se puede volver a comprobar");
-                }else{
+                } else {
                     document.getElementById('resultado').innerHTML = "Fallo";
                     document.getElementById('resultado').style.color = "red";
                     document.getElementById('puntuacion').innerHTML = respuesta[2];
                     if (document.getElementById('op1').checked) {
                         document.getElementById('t1').style.color = "red";
                         document.getElementById('t1').innerHTML = (document.getElementById('op1').value + " - INCORRECTA").bold();
-                    }else if (document.getElementById('op2').checked) {
+                    } else if (document.getElementById('op2').checked) {
                         document.getElementById('t2').style.color = "red";
                         document.getElementById('t2').innerHTML = (document.getElementById('op2').value + " - INCORRECTA").bold();
-                    }else if (document.getElementById('op3').checked) {
+                    } else if (document.getElementById('op3').checked) {
                         document.getElementById('t3').style.color = "red";
                         document.getElementById('t3').innerHTML = (document.getElementById('op3').value + " - INCORRECTA").bold();
-                    }else if (document.getElementById('op4').checked) {
+                    } else if (document.getElementById('op4').checked) {
                         document.getElementById('t4').style.color = "red";
                         document.getElementById('t4').innerHTML = (document.getElementById('op4').value + " - INCORRECTA").bold();
                     }
                     var corr = respuesta[1];
-                    if(document.getElementById('op1').value == corr){
+                    if (document.getElementById('op1').value == corr) {
                         document.getElementById('t1').style.color = "green";
                         document.getElementById('t1').innerHTML = (document.getElementById('op1').value + " - CORRECTA").bold();
-                    }else if(document.getElementById('op2').value == corr){
+                    } else if (document.getElementById('op2').value == corr) {
                         document.getElementById('t2').style.color = "green";
                         document.getElementById('t2').innerHTML = (document.getElementById('op2').value + " - CORRECTA").bold();
-                    }else if(document.getElementById('op3').value == corr){
+                    } else if (document.getElementById('op3').value == corr) {
                         document.getElementById('t3').style.color = "green";
                         document.getElementById('t3').innerHTML = (document.getElementById('op3').value + " - CORRECTA").bold();
-                    }else if(document.getElementById('op4').value == corr){
+                    } else if (document.getElementById('op4').value == corr) {
                         document.getElementById('t4').style.color = "green";
                         document.getElementById('t4').innerHTML = (document.getElementById('op4').value + " - CORRECTA").bold();
                     }
@@ -150,20 +158,47 @@ createFooter();
         var respuesta;
         if (document.getElementById('op1').checked) {
             respuesta = document.getElementById('op1').value;
-        }else if (document.getElementById('op2').checked) {
+        } else if (document.getElementById('op2').checked) {
             respuesta = document.getElementById('op2').value;
-        }else if (document.getElementById('op3').checked) {
+        } else if (document.getElementById('op3').checked) {
             respuesta = document.getElementById('op3').value;
-        }else if (document.getElementById('op4').checked) {
+        } else if (document.getElementById('op4').checked) {
             respuesta = document.getElementById('op4').value;
         }
         xhrComprobar.open('GET', 'ajax/ComprobarPregunta.php?respuesta=' + respuesta, true);
         xhrComprobar.send();
     }
 
-
     function acabar() {
-        alert("Acabar");
+        window.location = "FinJuego.php"
+    }
+
+
+    xhrNumeros = new XMLHttpRequest();
+    xhrNumeros.onreadystatechange = function () {
+        switch (xhrNumeros.readyState) {
+            case 4:
+                var res = xhrNumeros.responseText;
+                console.log(res);
+                if (res == "1") {
+                    document.getElementById('likes').innerHTML = parseInt(document.getElementById('likes').textContent) + 1;
+                } else if (res == "2") {
+                    document.getElementById('dislikes').innerHTML = parseInt(document.getElementById('dislikes').textContent) + 1;
+                }
+                break;
+        }
+    }
+
+    function like(id) {
+        document.getElementById("btnLike").disabled = true;
+        xhrNumeros.open('GET', 'ajax/EditLikeDislike.php?mode=like&id=' + id, true);
+        xhrNumeros.send();
+    }
+
+    function dislike(id) {
+        document.getElementById("btnDislike").disabled = true;
+        xhrNumeros.open('GET', 'ajax/EditLikeDislike.php?mode=dislike&id=' + id, true);
+        xhrNumeros.send();
     }
 </script>
 </html>

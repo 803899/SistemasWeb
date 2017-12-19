@@ -330,4 +330,82 @@
       <value>jfldkjf</value>
     </incorrectResponses>
   </assessmentItem>
+  <assessmentItem complexity="1" subject="Internet" author="jminer002@ikasle.ehu.eus">
+    <itemBody>
+      <p>&#xBF;Qu&#xE9; significa IP?</p>
+    </itemBody>
+    <correctResponse>
+      <value>Internet Protocol</value>
+    </correctResponse>
+    <incorrectResponses>
+      <value>Inquilino Perdido</value>
+      <value>Indie Pocho</value>
+      <value>Instituto Pelado</value>
+    </incorrectResponses>
+  </assessmentItem>
+  <assessmentItem complexity="4" subject="Internet" author="jminer002@ikasle.ehu.eus">
+    <itemBody>
+      <p>&#xBF;En qu&#xE9; a&#xF1;o se invent&#xF3; HTML?</p>
+    </itemBody>
+    <correctResponse>
+      <value>1991</value>
+    </correctResponse>
+    <incorrectResponses>
+      <value>1990</value>
+      <value>1992</value>
+      <value>1993</value>
+    </incorrectResponses>
+  </assessmentItem>
+  <assessmentItem complexity="1" subject="OT" author="jminer002@ikasle.ehu.eus">
+    <itemBody>
+      <p>&#xBF;Qui&#xE9;n merec&#xED;a irse?</p>
+    </itemBody>
+    <correctResponse>
+      <value>Cepeda</value>
+    </correctResponse>
+    <incorrectResponses>
+      <value>Raoul</value>
+      <value>Mireya</value>
+      <value>Mimi</value>
+    </incorrectResponses>
+  </assessmentItem>
+  <assessmentItem complexity="5" subject="" author="jminer002@ikasle.ehu.eus">
+    <itemBody>
+      <p>D</p>
+    </itemBody>
+    <correctResponse>
+      <value>D</value>
+    </correctResponse>
+    <incorrectResponses>
+      <value>A</value>
+      <value>A</value>
+      <value>A</value>
+    </incorrectResponses>
+  </assessmentItem>
+  <assessmentItem complexity="1" subject="" author="jminer002@ikasle.ehu.eus">
+    <itemBody>
+      <p>D</p>
+    </itemBody>
+    <correctResponse>
+      <value>D</value>
+    </correctResponse>
+    <incorrectResponses>
+      <value>A</value>
+      <value>A</value>
+      <value>A</value>
+    </incorrectResponses>
+  </assessmentItem>
+  <assessmentItem complexity="1" subject="" author="jminer002@ikasle.ehu.eus">
+    <itemBody>
+      <p>D</p>
+    </itemBody>
+    <correctResponse>
+      <value>D</value>
+    </correctResponse>
+    <incorrectResponses>
+      <value>A</value>
+      <value>A</value>
+      <value>A</value>
+    </incorrectResponses>
+  </assessmentItem>
 </assessmentItems>

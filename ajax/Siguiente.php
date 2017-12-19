@@ -6,8 +6,10 @@ if (!isset($_SESSION['user']) && isset($_SESSION['preguntas'])) {
         $id = $_SESSION['preguntas'][$num];
         while (strcmp($id, null) == 0) { //Esto es porque a veces sale null
             $id = $_SESSION['preguntas'][$num];
+            echo $id;
         }
-        $_SESSION['preguntas'] = array_diff($_SESSION['preguntas'], array($id));
+        unset($_SESSION['preguntas'][$num]);
+        $_SESSION['preguntas'] = array_values($_SESSION['preguntas']);
         $_SESSION['idPregunta'] = $id;
         $mysqli = mysqli_connect("localhost", "id3131583_swg12", "veskojulen", "id3131583_quiz");
         if (!$mysqli) {
@@ -19,11 +21,18 @@ if (!isset($_SESSION['user']) && isset($_SESSION['preguntas'])) {
                 while ($row = mysqli_fetch_array($res)) {
                     $respuestas = array($row['Correcta'], $row['Incorrecta1'], $row['Incorrecta2'], $row['Incorrecta3']);
                     shuffle($respuestas);
+                    $foto = $row['Imagen'];
+                    if ($foto != null) {
+                        echo "<div class='row'><div class='col-md-9'>";
+                    }
 
                     echo '<form id="form">
-                    <div class="form-group">
+                    <div class="form-group" style="margin: 1px;">
                         <label><h3>Pregunta: &nbsp&nbsp</h3></label>
                         <label>' . $row['Enunciado'] . '</label>
+                    </div>
+                    <div class="form-group" style="margin: 1px;">
+                        <label>Complejidad: ' . $row['Complejidad'] . '</label>
                     </div>
                     <div class="custom-controls-stacked" id="respuestas">
                         <label class="custom-control custom-radio">
@@ -48,14 +57,31 @@ if (!isset($_SESSION['user']) && isset($_SESSION['preguntas'])) {
                         </label>
                     </div>
                     <div class="form-group" style="margin-top: 20px;">
-                        <input type="button" value="Siguiente" onclick="siguiente()" class="btn btn-info">
-                        <input type="button" value="Comprobar" onclick="comprobar()" class="btn btn-info">
-                        <input type="button" value="Acabar" onclick="acabar()" class="btn btn-info">
+                        <input type="button" id="saltar" value="Saltar" onclick="siguiente()" class="btn btn-primary" style="width: 110px;">
+                        <input type="button" value="Comprobar" onclick="comprobar()" class="btn btn-primary" style="width: 110px;">
+                        <input type="button" value="Acabar" onclick="acabar()" class="btn btn-primary" style="width: 110px;">
                         <label style="margin-left: 10px;">Puntuación:&nbsp</label>
-                        <label id="puntuacion">'.$_SESSION['puntuacion'].'</label>
+                        <label id="puntuacion">' . $_SESSION['puntuacion'] . '</label>
                         <label id="resultado" style="margin-left: 10px;"></label>
                     </div>
-                </form>';
+                    <div class="form-group" style="margin-top: 20px;">
+                        <button class="btn btn-primary" onclick="like('.$id.')" style="width: 90px;" type="button" id="btnLike"><i class="far fa-thumbs-up"></i> Like</button>
+                        <label>&nbspLikes totales: </label>
+                        <label id="likes">'. $row['likes'] .'</label>
+                    </div>
+                    <div class="form-group" style="margin-top: 20px;">
+                        <button class="btn btn-primary" onclick="dislike('.$id.')" style="width: 90px;" type="button" id="btnDislike"><i class="far fa-thumbs-down"></i> Dislike</button>
+                        <label>&nbspDislikes totales: </label>
+                        <label id="dislikes">'. $row['dislikes'] .'</label>
+                    </div>
+                    </form>';
+                    if ($foto != null) {
+                        echo "</div>
+                            <div class='col-md-3'>
+                            <img src=\"data:image/jpeg;base64," . base64_encode($foto) . "\" style='max-height: 100%; max-width: 100%;'>
+                            </div>
+                                </div>";
+                    }
                 }
 
             } else {
@@ -64,7 +90,7 @@ if (!isset($_SESSION['user']) && isset($_SESSION['preguntas'])) {
         }
         mysqli_close($mysqli);
     } else {
-        echo "No quedan más preguntas.";
+        echo "fin";
     }
 } else {
     echo "Error";
