@@ -1,26 +1,8 @@
 <?php
 session_start();
-if (!isset($_SESSION['user'])) {
-    $mysqli = mysqli_connect("localhost", "id3131583_swg12", "veskojulen", "id3131583_quiz");
-    if (!$mysqli) {
-        echo "Fallo al conectar a MySQL: " . $mysqli->connect_error;
-    } else {
-        $query = "SELECT id FROM preguntas";
-        $res = mysqli_query($mysqli, $query);
-        if ($res) {
-            $_SESSION['preguntas'] = array();
-            $_SESSION['puntuacion'] = 0;
-            while ($row = mysqli_fetch_array($res)) {
-                array_push($_SESSION['preguntas'], $row['id']);
-            }
-            if (count($_SESSION['preguntas']) == 0) {
-                header('Location: SinPreguntas.php');
-            }
-        } else {
-            header('Location: SinPreguntas.php');
-        }
-    }
-    mysqli_close($mysqli);
+if(isset($_SESSION['user'])){
+    header("Location: error.php");
+    exit();
 }
 ?>
 <!DOCTYPE html>
@@ -48,8 +30,45 @@ if (!isset($_SESSION['user'])) {
             <p class="float-left d-md-none">
                 <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Navegación</button>
             </p>
-            <div class="jumbotron" id="pregunta" style="height: 500px;">
-
+            <div class="jumbotron" id="pregunta">
+                <h2>Jugar</h2>
+                <hr/>
+                <form style="text-align: center;">
+                    <div class="form-group row">
+                        <label for="tema" class="col-sm-3 col-form-label">Elige una categoría:</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" id="tema">
+                                <?php
+                                $mysqli = mysqli_connect("localhost", "id3131583_swg12", "veskojulen", "id3131583_quiz");
+                                if (!$mysqli) {
+                                    echo "Fallo al conectar a MySQL: " . $mysqli->connect_error;
+                                } else {
+                                    $query = "SELECT DISTINCT(Tema) FROM preguntas";
+                                    $res = mysqli_query($mysqli, $query);
+                                    if ($res) {
+                                        while ($row = mysqli_fetch_array($res)) {
+                                            if(strlen($row['Tema'])!=0) {
+                                                echo "<option value='". $row['Tema'] ."'>" . $row['Tema'] . "</option>";
+                                            }
+                                        }
+                                    }
+                                }
+                                mysqli_close($mysqli);
+                                ?>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="button" value="Jugar" class="btn btn-primary" style="width: 100%;" onclick="jugarTema()">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>o bien</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="button" value="Jugar en todas las categorías" class="btn btn-primary"
+                               style="width:80%;" onclick="window.location = 'Jugar.php';">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -62,4 +81,10 @@ createFooter();
 <script src="lib/popper.min.js"></script>
 <script src="static/js/bootstrap.min.js"></script>
 <script src="static/js/offcanvas.js"></script>
+<script>
+    function jugarTema(){
+        var tema = $("#tema").val();
+        window.location = "Jugar.php?tema=" + tema;
+    }
+</script>
 </html>

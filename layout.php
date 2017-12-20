@@ -81,9 +81,14 @@ function createSideBar($selected)
         }
     }else {
         if ($selected == 2) {
-            echo '<a href="Jugar.php" class="list-group-item active">Jugar</a>';
+            echo '<a href="ModoJuego.php" class="list-group-item active">Jugar</a>';
         } else {
-            echo '<a href="Jugar.php" class="list-group-item">Jugar</a>';
+            echo '<a href="ModoJuego.php" class="list-group-item">Jugar</a>';
+        }
+        if($selected == 6){
+            echo '<a href="Ranking.php" class="list-group-item active">Ver Ranking</a>';
+        } else {
+            echo '<a href="Ranking.php" class="list-group-item">Ver Ranking</a>';
         }
     }
     if ($selected == 3) {

@@ -13,12 +13,14 @@ if (!isset($_SESSION['user']) && isset($_SESSION['preguntas']) && isset($_GET['r
                 unset($_SESSION['idPregunta']);
                 if (strcmp($_GET['respuesta'], $row['correcta']) == 0) {
                     $_SESSION['puntuacion'] += 10*$row['complejidad'];
+                    $_SESSION['aciertos'] += 1;
                     echo json_encode(array("ok", $_SESSION['puntuacion']));
                 } else {
                     $_SESSION['puntuacion'] -= 5*$row['complejidad'];
                     if($_SESSION['puntuacion'] < 0){
                         $_SESSION['puntuacion'] = 0;
                     }
+                    $_SESSION['fallos'] += 1;
                     echo json_encode(array("er", $row['correcta'], $_SESSION['puntuacion']));
                 }
             }

@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user']) && isset($_SESSION['preguntas'])) {
-    if (count($_SESSION['preguntas']) != 0) {
+    if (count($_SESSION['preguntas']) != 0 && $_SESSION['contador'] != 3) {
         $num = rand(0, count($_SESSION['preguntas']) - 1);
         $id = $_SESSION['preguntas'][$num];
         while (strcmp($id, null) == 0) { //Esto es porque a veces sale null
@@ -19,6 +19,9 @@ if (!isset($_SESSION['user']) && isset($_SESSION['preguntas'])) {
             $res = mysqli_query($mysqli, $query);
             if ($res) {
                 while ($row = mysqli_fetch_array($res)) {
+                    $_SESSION['contador'] += 1;
+                    $_SESSION['sumDificultad'] += $row['Complejidad'];
+
                     $respuestas = array($row['Correcta'], $row['Incorrecta1'], $row['Incorrecta2'], $row['Incorrecta3']);
                     shuffle($respuestas);
                     $foto = $row['Imagen'];
@@ -28,12 +31,16 @@ if (!isset($_SESSION['user']) && isset($_SESSION['preguntas'])) {
 
                     echo '<form id="form">
                     <div class="form-group" style="margin: 1px;">
-                        <label><h3>Pregunta: &nbsp&nbsp</h3></label>
+                        <label><h3>Pregunta: </h3></label>
                         <label>' . $row['Enunciado'] . '</label>
+                        <label style="float: right;">Preguntas: '. $_SESSION['contador'] . ' de ' . $_SESSION['numPreguntas'] .'</label>
                     </div>
                     <div class="form-group" style="margin: 1px;">
-                        <label>Complejidad: ' . $row['Complejidad'] . '</label>
-                    </div>
+                        <label>Complejidad: ' . $row['Complejidad'] . '</label>';
+                        if(strlen($row['Tema'])!= 0){
+                            echo '<label>&nbsp| Tema: ' . $row['Tema'] . '</label>';
+                        }
+                    echo '</div>
                     <div class="custom-controls-stacked" id="respuestas">
                         <label class="custom-control custom-radio">
                             <input id="op1" name="respuesta" type="radio" class="custom-control-input" value="' . $respuestas[0] . '">

@@ -5,17 +5,35 @@ if (!isset($_SESSION['user'])) {
     if (!$mysqli) {
         echo "Fallo al conectar a MySQL: " . $mysqli->connect_error;
     } else {
-        $query = "SELECT id FROM preguntas";
+        unset($_SESSION['tema']);
+        if(isset($_GET['tema'])){
+            $tema = $_GET['tema'];
+            $_SESSION['tema'] = $tema;
+            $query = "SELECT id FROM preguntas WHERE Tema='$tema'";
+        }else{
+            $query = "SELECT id FROM preguntas";
+        }
+
         $res = mysqli_query($mysqli, $query);
         if ($res) {
             $_SESSION['preguntas'] = array();
             $_SESSION['puntuacion'] = 0;
+            $_SESSION['contador'] = 0;
+            $_SESSION['sumDificultad'] = 0;
+            $_SESSION['aciertos'] = 0;
+            $_SESSION['fallos'] = 0;
             while ($row = mysqli_fetch_array($res)) {
                 array_push($_SESSION['preguntas'], $row['id']);
             }
             if (count($_SESSION['preguntas']) == 0) {
                 header('Location: SinPreguntas.php');
             }
+            if(count($_SESSION['preguntas']) > 3){
+                $_SESSION['numPreguntas'] = 3;
+            }else{
+                $_SESSION['numPreguntas'] = count($_SESSION['preguntas']);
+            }
+
         } else {
             header('Location: SinPreguntas.php');
         }
