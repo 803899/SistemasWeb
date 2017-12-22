@@ -9,6 +9,7 @@ if(isset($_SESSION['user'])){
 <html>
 <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Preguntas</title>
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
     <link href="static/css/offcanvas.css" rel="stylesheet">
@@ -35,7 +36,7 @@ if(isset($_SESSION['user'])){
                 <hr/>
                 <form style="text-align: center;">
                     <div class="form-group row">
-                        <label for="tema" class="col-sm-3 col-form-label">Elige una categoría:</label>
+                        <label for="tema" class="col-sm-3 col-form-label">Elige un tema:</label>
                         <div class="col-sm-6">
                             <select class="form-control" id="tema">
                                 <?php
@@ -65,7 +66,7 @@ if(isset($_SESSION['user'])){
                         <label>o bien</label>
                     </div>
                     <div class="form-group">
-                        <input type="button" value="Jugar en todas las categorías" class="btn btn-primary"
+                        <input type="button" value="Jugar en todos los temas" class="btn btn-primary"
                                style="width:80%;" onclick="window.location = 'Jugar.php';">
                     </div>
                 </form>

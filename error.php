@@ -5,6 +5,7 @@ session_start();
 <html>
 <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Preguntas</title>
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
     <link href="static/css/offcanvas.css" rel="stylesheet">

@@ -32,6 +32,48 @@ session_start();
             </p>
             <div class="jumbotron" style="text-align: center;">
                 <img src="images/quiz.png" height="150px">
+                <p>Ranking top 10 de jugadores:</p>
+                <table class="table table-hover table-responsive-sm">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nick</th>
+                        <th scope="col">Puntuacion</th>
+                        <th scope="col">Aciertos</th>
+                        <th scope="col">Fallos</th>
+                        <th scope="col">Media dificultad</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $mysqli = mysqli_connect("localhost", "id3131583_swg12", "veskojulen", "id3131583_quiz");
+                    if (!$mysqli) {
+                        echo "Fallo al conectar a MySQL: " . $mysqli->connect_error;
+                    } else {
+                        $query = "SELECT * FROM ranking ORDER BY puntuacion DESC";
+                        $res = mysqli_query($mysqli, $query);
+                        if ($res) {
+                            $cont = 1;
+                            while ($row = mysqli_fetch_array($res)) {
+                                if($cont==11){
+                                    break;
+                                }
+                                echo "<tr>
+                                        <th scope='row'>".$cont."</th>
+                                        <td>".$row['nick']."</td>
+                                        <td>".$row['puntuacion']."</td>
+                                        <td>".$row['aciertos']."</td>
+                                        <td>".$row['fallos']."</td>
+                                        <td>".$row['media']."</td>
+                                      </tr>";
+                                $cont += 1;
+                            }
+                        }
+                    }
+                    ?>
+                    </tbody>
+                </table>
+                <button onclick="window.location = 'ModoJuego.php';" class="btn btn-primary">Jugar</button>
             </div>
         </div>
 

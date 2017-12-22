@@ -11,6 +11,7 @@ session_start();
 </style>
 <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Preguntas</title>
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
 
@@ -34,7 +35,8 @@ session_start();
                 <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Navegación</button>
             </p>
             <div class="jumbotron">
-                <h3>Aplicación desarrolada por Vesko y Julen<br/>
+                <br/>
+                <h3>Aplicación desarrolada por Julen Miner<br/>
                     para Sistemas Web</h3><br/>
                 Estudiantes de Ingeniería Informática (Ingeniería del Software)
                 <br/>

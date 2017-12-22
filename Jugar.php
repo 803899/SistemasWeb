@@ -45,6 +45,7 @@ if (!isset($_SESSION['user'])) {
 <html>
 <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Preguntas</title>
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
     <link href="static/css/offcanvas.css" rel="stylesheet">
@@ -66,7 +67,7 @@ if (!isset($_SESSION['user'])) {
             <p class="float-left d-md-none">
                 <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Navegación</button>
             </p>
-            <div class="jumbotron" id="pregunta" style="height: 500px;">
+            <div class="jumbotron" id="pregunta" style="min-height: 500px;">
 
             </div>
         </div>

@@ -5,6 +5,7 @@ session_start();
 <html>
 <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Preguntas</title>
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
     <link href="static/css/offcanvas.css" rel="stylesheet">
@@ -46,7 +47,7 @@ if (isset($_SESSION['user'])) {
                         <label>Password*:</label>
                         <input type="password" name="password" class="form-control" placeholder="··············">
                     </div>
-                    <input type="submit" value="Iniciar sesión" class="btn btn-info">
+                    <input type="submit" value="Iniciar sesión" class="btn btn-primary">
                 </form>
                 <p>¿No te acuerdas de tu contraseña? <a href="RecuperarContrasena.php">¡Recupérala!</a></p>
                 <?php

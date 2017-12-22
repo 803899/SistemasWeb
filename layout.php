@@ -24,7 +24,7 @@ function createNavbar($selected)
         if ($_SESSION['foto'] == null) {
             echo "<li class='nav-item'><img src=\"images/unknown.png\" width=40px></li> ";
         } else {
-            echo "<li class='nav-item'><img src=\"data:image/jpeg;base64," . base64_encode($_SESSION['foto']) . "\" width=40px></li> ";
+            echo "<li class='nav-item'><img class='rounded' src=\"data:image/jpeg;base64," . base64_encode($_SESSION['foto']) . "\" style='max-width: 40px; max-height: 40px'></li> ";
         }
 
     } else {
@@ -104,9 +104,16 @@ function createFooter()
 {
     echo '<footer class="footer">
             <div class="container">
+            <div class="row">
+                <div class="col-md-9">
                 Sistemas web | 
                 <a href="https://en.wikipedia.org/wiki/Quiz" target="_blank">Que es un Quiz?</a> |
                 <a href="https://github.com/vawer/SW-Public" target="_blank">Link GITHUB</a>
+                </div>
+                <div class="col-md-3 mr-auto">
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br /><a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"></a>
+                </div>
+                </div>
             </div>
         </footer>';
 }

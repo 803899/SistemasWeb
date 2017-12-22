@@ -5,6 +5,7 @@ session_start();
 <html>
 <head>
     <meta name="tipo_contenido" content="text/html;" http-equiv="content-type" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Preguntas</title>
     <link href="static/css/bootstrap.min.css" rel="stylesheet">
     <link href="static/css/offcanvas.css" rel="stylesheet">
@@ -100,8 +101,8 @@ if (isset($_SESSION['user'])) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="submit" id="boton" value="Registrarse" disabled class="btn btn-info">
-                        <input type="button" id="delete" value="Eliminar imagen" class="btn btn-info"
+                        <input type="submit" id="boton" value="Registrarse" disabled class="btn btn-primary">
+                        <input type="button" id="delete" value="Eliminar imagen" class="btn btn-primary"
                                onclick="deleteImage()" style="visibility: hidden">
                     </div>
                 </form>
