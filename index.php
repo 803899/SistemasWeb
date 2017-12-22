@@ -73,7 +73,11 @@ session_start();
                     ?>
                     </tbody>
                 </table>
-                <button onclick="window.location = 'ModoJuego.php';" class="btn btn-primary">Jugar</button>
+                <?php
+                if(!isset($_SESSION['user'])){
+                    echo '<button onclick="window.location = \'ModoJuego.php\';" class="btn btn-primary">Jugar</button>';
+                }
+                ?>
             </div>
         </div>
 

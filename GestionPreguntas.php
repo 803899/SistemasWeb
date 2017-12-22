@@ -113,9 +113,9 @@ if (!isset($_SESSION['user'])) {
                             <img id="preview" style="max-height: 80px; max-width: 80px;"/>
                         </div>
                         <div class="form-group">
-                            <input type="button" value="Enviar quiz" onclick='enviar()' class="btn btn-info">
-                            <input type="button" onclick='verPreguntas()' value="Ver preguntas" class="btn btn-info">
-                            <input type="button" id="delete" value="Eliminar imagen" class="btn btn-info"
+                            <input type="button" value="Enviar quiz" onclick='enviar()' class="btn btn-primary">
+                            <input type="button" onclick='verPreguntas()' value="Ver preguntas" class="btn btn-primary">
+                            <input type="button" id="delete" value="Eliminar imagen" class="btn btn-primary"
                                    onclick="deleteImage()" style="visibility: hidden">
                         </div>
                     </form>

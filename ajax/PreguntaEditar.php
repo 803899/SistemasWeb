@@ -51,8 +51,8 @@ if (isset($_GET['id'])) {
                             <td><input id='tema' type='text' value='" . $row['Tema'] . "'/></td>
                         </tr>
                         <tr>
-                            <td><br/><input type='button' onclick='modificar()' value='Modificar pregunta' class='btn btn-info' style='width: 200px'/></td>
-                            <td><br/><input type='button' onclick='eliminar()' value='Eliminar pregunta' class='btn btn-info' style='width: 200px'/></td>
+                            <td><br/><input type='button' onclick='modificar()' value='Modificar pregunta' class='btn btn-primary' style='width: 200px'/></td>
+                            <td><br/><input type='button' onclick='eliminar()' value='Eliminar pregunta' class='btn btn-primary' style='width: 200px'/></td>
                         </tr>
                     </form>
                 </table>";
